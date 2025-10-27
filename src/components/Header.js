@@ -33,8 +33,8 @@ function Header() {
           <div className="drawer-side">
             <label htmlFor="my-drawer" aria-label="close sidebar" className="drawer-overlay"></label>
             <ul className="menu bg-base-200 text-base-content min-h-full w-80 p-4">
-              <li><Link href="/pagina1">Página 1</Link></li>
-              <li><Link href="/pagina2">Página 2</Link></li>
+              <li><Link href="/calendario">Calendario</Link></li>
+              <li><Link href="//reloj">Reloj</Link></li>
               <li><Link href="/pagina3">Página 3</Link></li>
               <li><Link href="/pagina4">Página 4</Link></li>
               <li><Link href="/pagina5">Página 5</Link></li>
