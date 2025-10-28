@@ -27,10 +27,13 @@ export default function RootLayout({ children }) {
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased min-h-screen`}
       >
+        
         <ThemeProvider>
           <Header />
           {children}
         </ThemeProvider>
+        
+        
       </body>
     </html>
   );

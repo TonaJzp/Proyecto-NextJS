@@ -1,10 +1,15 @@
 import Link from "next/link";
 import AutoCarousel from "@/components/AutoCarousel";
-import CountDown from "@/components/CountDown";
-import Table from "@/components/Table";
-import SortedTable from "@/components/SortedTable";
 import RadialProgress from "@/components/RadialProgress";
-
+import Breadcrumbs from "@/components/Breadcrumbs";
+import Diff from "@/components/Diff";
+import Header from "next/head";
+import MyDatePicker from "@/components/MyDatePicker";
+import ThemeProvider from "@/components/ThemeProvider";
+import ThemeSelect from "@/components/ThemeSelect";
+import Card from "@/components/Card";
+import Fab from "@/components/Fab";
+import Footer from "@/components/Footer";
 
 export default function Home() {
   return (
@@ -12,13 +17,11 @@ export default function Home() {
 
       <AutoCarousel />
 
-
       <br />
       <div className="tooltip" data-tip="hello world">
         <p className="btn">Hover me</p>
       </div>
 
-      <CountDown />
       <RadialProgress />
 
 
@@ -85,9 +88,6 @@ export default function Home() {
       </div>
 
       <div className="p-10 bg-white"></div>
-
-      <SortedTable />
-      {/* <Table /> */}
 
     </section>
   );
