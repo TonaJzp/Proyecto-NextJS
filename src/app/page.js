@@ -46,7 +46,7 @@ export default function HomePage() {
     },
     {
       name: "Zorro rojo",
-      img: "/Animal del dia/zorro.webp",
+      img: "/Animal del dia/lemur.webp",
       facts: [
         "Habitante común de bosques y zonas periurbanas.",
         "Omnívoro oportunista con gran adaptación.",
