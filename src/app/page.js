@@ -1,94 +1,257 @@
-import Link from "next/link";
+// app/page.js
+"use client";
+
+import { useState, useMemo, useEffect, useRef } from "react";
 import AutoCarousel from "@/components/AutoCarousel";
-import RadialProgress from "@/components/RadialProgress";
-import Breadcrumbs from "@/components/Breadcrumbs";
-import Diff from "@/components/Diff";
-import Header from "next/head";
-import MyDatePicker from "@/components/MyDatePicker";
-import ThemeProvider from "@/components/ThemeProvider";
-import ThemeSelect from "@/components/ThemeSelect";
 import Card from "@/components/Card";
 import Fab from "@/components/Fab";
-import Footer from "@/components/Footer";
+import Breadcrumbs from "@/components/Breadcrumbs";
 
-export default function Home() {
+export default function HomePage() {
+  // --- DATA: presets de recorrido ---
+  const presets = {
+    familia: [
+      { time: "10:00", icon: "🐠", title: "Acuario interactivo", desc: "Zona táctil y túnel de cristal." },
+      { time: "11:30", icon: "🦒", title: "Sabana africana", desc: "Pasarela elevada con vista a jirafas." },
+      { time: "13:00", icon: "🍽️", title: "Picnic en sombra", desc: "Área familiar con fuentes cercanas." },
+      { time: "15:30", icon: "🐧", title: "Encuentro con pingüinos", desc: "Mini charla para peques." },
+    ],
+    aventura: [
+      { time: "09:30", icon: "🦎", title: "Terrario tropical", desc: "Camaleones y serpientes exóticas." },
+      { time: "11:00", icon: "🦅", title: "Rapaces en vuelo", desc: "Asientos laterales para más acción." },
+      { time: "12:15", icon: "🌿", title: "Sendero bosque húmedo", desc: "Puentes y niebla artificial." },
+      { time: "16:30", icon: "🐅", title: "Gran felino al atardecer", desc: "Momento de mayor actividad." },
+    ],
+    relax: [
+      { time: "11:00", icon: "🦩", title: "Aviario panorámico", desc: "Paseo tranquilo entre flamencos." },
+      { time: "12:00", icon: "☕", title: "Cafetería lago", desc: "Terraza con vistas al estanque." },
+      { time: "13:30", icon: "🧘", title: "Jardín botánico", desc: "Sombra, bancos y mariposas." },
+      { time: "17:00", icon: "🐢", title: "Tortugas gigantes", desc: "Zona silenciosa para fotos." },
+    ],
+  };
+
+  const [preset, setPreset] = useState("familia");
+  const route = useMemo(() => presets[preset], [preset]);
+
+  // --- DATA: Animal del día ---
+  const animals = [
+    {
+      name: "Lémur de cola anillada",
+      img: "/Animal del dia/lemur.webp",
+      facts: [
+        "Vive en grupos de hasta 30 individuos.",
+        "Usa su cola para comunicarse visualmente.",
+        "Programa de cría colaborativo europeo (EEP).",
+      ],
+    },
+    {
+      name: "Zorro rojo",
+      img: "/Animal del dia/zorro.webp",
+      facts: [
+        "Habitante común de bosques y zonas periurbanas.",
+        "Omnívoro oportunista con gran adaptación.",
+        "Actividad principalmente crepuscular y nocturna.",
+      ],
+    },
+    {
+      name: "Oso pardo",
+      img: "/Animal del dia/oso-pardo2.webp",
+      facts: [
+        "Uno de los mayores carnívoros de Europa.",
+        "Gran caminante: puede recorrer decenas de km.",
+        "Hibernación parcial según clima y recursos.",
+      ],
+    },
+  ];
+
+  const [animalIdx, setAnimalIdx] = useState(0);
+  const animal = animals[animalIdx];
+  const [fading, setFading] = useState(false);
+
+  // --- Rotación automática reiniciable ---
+  const autoMs = 6000;                 // 6s (entre 5–7s como pediste)
+  const timerRef = useRef(null);
+
+  const startAutoRotation = () => {
+    if (timerRef.current) clearInterval(timerRef.current);
+    timerRef.current = setInterval(() => {
+      setAnimalIdx((i) => (i + 1) % animals.length);
+    }, autoMs);
+  };
+
+  useEffect(() => {
+    startAutoRotation();
+    return () => {
+      if (timerRef.current) clearInterval(timerRef.current);
+    };
+  }, [animals.length]);
+
+  // Fade suave en cada cambio de animal
+  useEffect(() => {
+    setFading(true);
+    const t = setTimeout(() => setFading(false), 50);
+    return () => clearTimeout(t);
+  }, [animalIdx]);
+
   return (
-    <section>
+    <>
+      <Breadcrumbs className="mb-4" />
 
-      <AutoCarousel />
-
-      <br />
-      <div className="tooltip" data-tip="hello world">
-        <p className="btn">Hover me</p>
-      </div>
-
-      <RadialProgress />
-
-
-      {/* name of each tab group should be unique */}
-      <div className="tabs tabs-box">
-        <input type="radio" name="my_tabs" className="tab" aria-label="Tab 1" />
-        <div className="tab-content bg-base-100 border-base-300 p-6">
-          <p>Tab content 1</p>
-
-          <details className="dropdown">
-            <summary className="btn m-1">open or close</summary>
-            <ul className="menu dropdown-content bg-base-100 rounded-box z-1 w-52 p-2 shadow-sm">
-              <li><a>Item 1</a></li>
-              <li><a>Item 2</a></li>
-            </ul>
-          </details>
+      {/* Hero con carrusel automático */}
+      <section className="grid md:grid-cols-2 gap-6 items-stretch mb-10">
+        <div className="rounded-2xl overflow-hidden ring-1 ring-base-300">
+          <AutoCarousel />
         </div>
 
-        <input type="radio" name="my_tabs" className="tab" aria-label="Tab 2" />
-        <div className="tab-content bg-base-100 border-base-300 p-6">
-          <p>Tab content 2</p>
-
-          <div className="dropdown">
-            <div tabIndex={0} role="button" className="btn m-1">Click</div>
-            <ul tabIndex={0} className="dropdown-content menu bg-base-100 rounded-box z-1 w-52 p-2 shadow-sm">
-              <li><a>Item 1</a></li>
-              <li><a>Item 2</a></li>
-            </ul>
+        <div className="bg-base-200 rounded-2xl p-8 flex flex-col justify-center">
+          <h1 className="text-4xl font-bold mb-3">Bienvenido a Tona's Zoo</h1>
+          <p className="opacity-80">
+            Explora más de 350 especies, programas de conservación y experiencias
+            inmersivas para toda la familia. Cambia el tema desde el selector del
+            header para probar los estilos de daisyUI.
+          </p>
+          <div className="mt-6 flex gap-3">
+            <a className="btn btn-primary" href="/calendario">Planifica tu visita</a>
+            <a className="btn" href="/pagina4">Entradas y precios</a>
           </div>
         </div>
+      </section>
 
-        <input type="radio" name="my_tabs" className="tab" aria-label="Tab 3" defaultChecked />
-        <div className="tab-content bg-base-100 border-base-300 p-6">
-          <p>Tab content 3</p>
+      {/* Secciones destacadas (tarjetas) */}
+      <section className="mb-12">
+        <h2 className="text-2xl font-semibold mb-4">Explora por áreas</h2>
+        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+          <Card
+            image="/Habitats/mamiferos.webp"
+            imageAlt="Mamíferos"
+            title="Mamíferos"
+            description="Elefantes, jirafas, lémures y más en hábitats amplios."
+            actions={[{ label: "Ver hábitats", href: "/pagina3", color: "secondary" }]}
+          >
+            <div className="mt-6" />
+          </Card>
 
-          <button className="btn btn-neutral">Neutral</button>
-          <button className="btn btn-primary">Primary</button>
-          <button className="btn btn-secondary">Secondary</button>
-          <button className="btn btn-accent">Accent</button>
-          <button className="btn btn-info">Info</button>
-          <button className="btn btn-success">Success</button>
-          <button className="btn btn-warning">Warning</button>
-          <button className="btn btn-error">Error</button>
-          <br />
-          <button className="btn btn-soft">Default</button>
-          <button className="btn btn-soft btn-primary">Primary</button>
-          <button className="btn btn-soft btn-secondary">Secondary</button>
-          <button className="btn btn-soft btn-accent">Accent</button>
-          <button className="btn btn-soft btn-info">Info</button>
-          <button className="btn btn-soft btn-success">Success</button>
-          <button className="btn btn-soft btn-warning">Warning</button>
-          <button className="btn btn-soft btn-error">Error</button>
-          <br />
-          <button className="btn btn-outline">Default</button>
-          <button className="btn btn-outline btn-primary">Primary</button>
-          <button className="btn btn-outline btn-secondary">Secondary</button>
-          <button className="btn btn-outline btn-accent">Accent</button>
-          <button className="btn btn-outline btn-info">Info</button>
-          <button className="btn btn-outline btn-success">Success</button>
-          <button className="btn btn-outline btn-warning">Warning</button>
-          <button className="btn btn-outline btn-error">Error</button>
+          <Card
+            image="/Habitats/aves.webp"
+            imageAlt="Aves"
+            title="Aves"
+            description="Tucanes, Guacamayos y rapaces en vuelo."
+            actions={[{ label: "Ver hábitats", href: "/pagina3" }]}
+          >
+            <div className="mt-6" />
+          </Card>
 
+          <Card
+            image="/Habitats/reptiles.webp"
+            imageAlt="Reptiles"
+            title="Reptiles"
+            description="Caimanes, tortugas gigantes y serpientes."
+            actions={[{ label: "Ver hábitats", href: "/pagina3" }]}
+          >
+            <div className="mt-6" />
+          </Card>
+
+          <Card
+            image="/Habitats/acuario.webp"
+            imageAlt="Acuario"
+            title="Acuario"
+            description="Peces tropicales y medusas hipnóticas."
+            actions={[{ label: "Comprar entradas", href: "/pagina4", color: "accent" }]}
+          >
+            <div className="mt-6" />
+          </Card>
         </div>
-      </div>
+      </section>
 
-      <div className="p-10 bg-white"></div>
+      {/* Planifica + Animal del día */}
+      <section className="mb-20">
+        <h3 className="text-2xl font-semibold mb-6">Planifica tu recorrido en 1 clic</h3>
 
-    </section>
+        <div className="grid lg:grid-cols-3 gap-8">
+          {/* Presets + ruta recomendada */}
+          <div className="lg:col-span-2">
+            <div className="join mb-4">
+              <button
+                className={`btn join-item ${preset === "familia" ? "btn-primary" : ""}`}
+                onClick={() => setPreset("familia")}
+              >
+                👨‍👩‍👧 Familias
+              </button>
+              <button
+                className={`btn join-item ${preset === "aventura" ? "btn-primary" : ""}`}
+                onClick={() => setPreset("aventura")}
+              >
+                🧭 Aventura
+              </button>
+              <button
+                className={`btn join-item ${preset === "relax" ? "btn-primary" : ""}`}
+                onClick={() => setPreset("relax")}
+              >
+                🌿 Relax
+              </button>
+            </div>
+
+            <div className="grid sm:grid-cols-2 gap-4">
+              {route.map((s, i) => (
+                <div
+                  key={i}
+                  className="rounded-xl p-4 bg-base-200 ring-1 ring-base-300 flex gap-4 items-start"
+                >
+                  <div className="text-3xl leading-none">{s.icon}</div>
+                  <div>
+                    <div className="flex items-center gap-2">
+                      <span className="badge badge-outline">{s.time}</span>
+                      <h4 className="font-semibold">{s.title}</h4>
+                    </div>
+                    <p className="opacity-70 text-sm mt-1">{s.desc}</p>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          {/* Animal del día */}
+          <aside className="bg-base-200 rounded-2xl p-6 ring-1 ring-base-300">
+            <div className={`space-y-4 transition-opacity duration-700 ${fading ? "opacity-0" : "opacity-100"}`}>
+              <div className="badge badge-secondary badge-lg">Animal del día</div>
+              <div className="aspect-video w-full overflow-hidden rounded-xl ring-1 ring-base-300">
+                <img src={animal.img} alt={animal.name} className="w-full h-full object-cover" />
+              </div>
+              <h4 className="text-xl font-semibold">{animal.name}</h4>
+              <ul className="list-disc ps-5 space-y-1 opacity-80">
+                {animal.facts.map((f, i) => (
+                  <li key={i}>{f}</li>
+                ))}
+              </ul>
+              <div className="flex gap-3 pt-2">
+                <button
+                  className="btn btn-primary"
+                  onClick={() => {
+                    setAnimalIdx((i) => (i + 1) % animals.length);
+                    startAutoRotation(); // 🔁 reinicia el contador
+                  }}
+                >
+                  Siguiente animal
+                </button>
+                <a href="/pagina3" className="btn">
+                  Ver su hábitat
+                </a>
+              </div>
+            </div>
+          </aside>
+        </div>
+      </section>
+
+      {/* FAB de accesos rápidos */}
+      <Fab
+        main="✦"
+        variant="flower"
+        actions={[
+          { label: "Calendario", href: "/calendario", content: "📅" },
+          { label: "Entradas", href: "/pagina4", content: "🎟️" },
+          { label: "Contacto", href: "/pagina5", content: "✉️" },
+        ]}
+      />
+    </>
   );
 }

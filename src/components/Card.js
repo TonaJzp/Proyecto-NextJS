@@ -1,3 +1,4 @@
+// components/Card.js
 import Link from "next/link";
 import PropTypes from "prop-types";
 
@@ -37,11 +38,20 @@ export default function Card({
     .join(" ");
 
   return (
-    <div className={`card bg-base-100 shadow-xl ${sizeClass} ${variantClasses} ${className}`}>
+    <div
+      className={`card bg-base-100 shadow-xl ${sizeClass} ${variantClasses} ${className}`}
+    >
       {image && (
-        <figure>
-          {/* Si usas next/image, puedes sustituir por <Image ... /> */}
-          <img src={image} alt={imageAlt ?? title ?? ""} />
+        <figure
+          className={`${
+            variant === "side" ? "w-48 sm:w-64 h-auto" : "aspect-[16/9]"
+          } overflow-hidden`}
+        >
+          <img
+            src={image}
+            alt={imageAlt ?? title ?? ""}
+            className="w-full h-full object-cover object-center"
+          />
         </figure>
       )}
 
@@ -63,9 +73,9 @@ export default function Card({
 
         {actions.length > 0 && (
           <div className="card-actions justify-end">
-            {actions.map(({ label, href, onClick, color = "primary" }, i) =>
-              href ? (
-                <Link key={i} href={href} className={`btn btn-${color}`}>
+            {actions.map(({ label, href: actionHref, onClick, color = "primary" }, i) =>
+              actionHref ? (
+                <Link key={i} href={actionHref} className={`btn btn-${color}`}>
                   {label}
                 </Link>
               ) : (
