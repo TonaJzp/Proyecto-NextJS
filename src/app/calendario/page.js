@@ -58,7 +58,7 @@ export default function CalendarioViaje() {
                 <div className="stat-value text-primary">{checkin || "—"}</div>
               </div>
               <div className="stat">
-                <div className="stat-title">Salida</div>
+                <div className="stat-title">Salida...</div>
                 <div className="stat-value text-secondary">{checkout || "—"}</div>
               </div>
             </div>
