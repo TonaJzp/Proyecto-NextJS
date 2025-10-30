@@ -28,7 +28,7 @@ export default function Card({
       ? "card-compact"
       : size === "normal"
       ? "card-normal"
-      : `card-${size}`; // sm | md | lg | xs | xl
+      : `card-${size}`; 
 
   const variantClasses = [
     variant === "image" ? "image-full" : "",

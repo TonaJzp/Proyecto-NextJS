@@ -4,7 +4,7 @@
 import Image from "next/image";
 import { useEffect, useState } from "react";
 
-const images = ["/img1.jpg", "/img2.jpg", "/img3.jpg", "/img4.jpg"];
+const images = ["/Autocarrusel/1.webp", "/Autocarrusel/2.webp", "/Autocarrusel/3.webp", "/Autocarrusel/4.webp"];
 
 export default function AutoCarousel() {
     const [index, setIndex] = useState(0);
