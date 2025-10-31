@@ -1,4 +1,3 @@
-// app/page.js
 "use client";
 
 import { useState, useMemo, useEffect, useRef } from "react";
@@ -8,7 +7,6 @@ import Fab from "@/components/Fab";
 import Breadcrumbs from "@/components/Breadcrumbs";
 
 export default function HomePage() {
-  // --- DATA: presets de recorrido ---
   const presets = {
     familia: [
       { time: "10:00", icon: "🐠", title: "Acuario interactivo", desc: "Zona táctil y túnel de cristal." },
@@ -33,7 +31,6 @@ export default function HomePage() {
   const [preset, setPreset] = useState("familia");
   const route = useMemo(() => presets[preset], [preset]);
 
-  // --- DATA: Animal del día ---
   const animals = [
     {
       name: "Lémur de cola anillada",
@@ -68,7 +65,6 @@ export default function HomePage() {
   const animal = animals[animalIdx];
   const [fading, setFading] = useState(false);
 
-  // --- Rotación automática reiniciable ---
   const autoMs = 6000;                 // 6s (entre 5–7s como pediste)
   const timerRef = useRef(null);
 
@@ -86,7 +82,6 @@ export default function HomePage() {
     };
   }, [animals.length]);
 
-  // Fade suave en cada cambio de animal
   useEffect(() => {
     setFading(true);
     const t = setTimeout(() => setFading(false), 50);
@@ -95,9 +90,6 @@ export default function HomePage() {
 
   return (
     <>
-      <Breadcrumbs className="mb-4" />
-
-      {/* Hero con carrusel automático */}
       <section className="grid md:grid-cols-2 gap-6 items-stretch mb-10">
         <div className="rounded-2xl overflow-hidden ring-1 ring-base-300">
           <AutoCarousel />
@@ -117,7 +109,6 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* Secciones destacadas (tarjetas) */}
       <section className="mb-12">
         <h2 className="text-2xl font-semibold mb-4">Explora por áreas</h2>
         <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
@@ -163,12 +154,10 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* Planifica + Animal del día */}
       <section className="mb-20">
         <h3 className="text-2xl font-semibold mb-6">Planifica tu recorrido en 1 clic</h3>
 
         <div className="grid lg:grid-cols-3 gap-8">
-          {/* Presets + ruta recomendada */}
           <div className="lg:col-span-2">
             <div className="join mb-4">
               <button
@@ -210,7 +199,6 @@ export default function HomePage() {
             </div>
           </div>
 
-          {/* Animal del día */}
           <aside className="bg-base-200 rounded-2xl p-6 ring-1 ring-base-300">
             <div className={`space-y-4 transition-opacity duration-700 ${fading ? "opacity-0" : "opacity-100"}`}>
               <div className="badge badge-secondary badge-lg">Animal del día</div>
@@ -228,7 +216,7 @@ export default function HomePage() {
                   className="btn btn-primary"
                   onClick={() => {
                     setAnimalIdx((i) => (i + 1) % animals.length);
-                    startAutoRotation(); // 🔁 reinicia el contador
+                    startAutoRotation(); 
                   }}
                 >
                   Siguiente animal
@@ -242,7 +230,6 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* FAB de accesos rápidos */}
       <Fab
         main="✦"
         variant="flower"

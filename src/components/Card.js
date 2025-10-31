@@ -10,6 +10,8 @@ import PropTypes from "prop-types";
  * - actions: [{ label, href?, onClick?, color? }]
  * - variant: "default" | "image" | "side"
  * - size: "sm" | "md" | "lg" | "xs" | "xl" | "compact" | "normal"
+ * - figureClassName: clases para <figure> (opcional, p.ej. "w-1/2 h-full")
+ * - imageClassName: clases para <img> (opcional, p.ej. "w-full h-full object-cover")
  */
 export default function Card({
   title,
@@ -22,13 +24,15 @@ export default function Card({
   size = "md",
   className = "",
   children,
+  figureClassName,              // 👈 nuevo
+  imageClassName,               // 👈 nuevo
 }) {
   const sizeClass =
     size === "compact"
       ? "card-compact"
       : size === "normal"
       ? "card-normal"
-      : `card-${size}`; 
+      : `card-${size}`;
 
   const variantClasses = [
     variant === "image" ? "image-full" : "",
@@ -37,20 +41,19 @@ export default function Card({
     .filter(Boolean)
     .join(" ");
 
+  // valores por defecto antiguos (compatibles)
+  const defaultFigure =
+    variant === "side" ? "w-48 sm:w-64 h-auto" : "aspect-[16/9]";
+  const defaultImg = "w-full h-full object-cover object-center";
+
   return (
-    <div
-      className={`card bg-base-100 shadow-xl ${sizeClass} ${variantClasses} ${className}`}
-    >
+    <div className={`card bg-base-100 shadow-xl ${sizeClass} ${variantClasses} ${className}`}>
       {image && (
-        <figure
-          className={`${
-            variant === "side" ? "w-48 sm:w-64 h-auto" : "aspect-[16/9]"
-          } overflow-hidden`}
-        >
+        <figure className={`${figureClassName ?? defaultFigure} overflow-hidden`}>
           <img
             src={image}
             alt={imageAlt ?? title ?? ""}
-            className="w-full h-full object-cover object-center"
+            className={imageClassName ?? defaultImg}
           />
         </figure>
       )}
@@ -102,11 +105,13 @@ Card.propTypes = {
       label: PropTypes.string.isRequired,
       href: PropTypes.string,
       onClick: PropTypes.func,
-      color: PropTypes.string, // primary, secondary, accent, etc.
+      color: PropTypes.string,
     })
   ),
   variant: PropTypes.oneOf(["default", "image", "side"]),
   size: PropTypes.oneOf(["xs", "sm", "md", "lg", "xl", "compact", "normal"]),
   className: PropTypes.string,
   children: PropTypes.node,
+  figureClassName: PropTypes.string,
+  imageClassName: PropTypes.string,
 };
