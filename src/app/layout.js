@@ -1,4 +1,3 @@
-// app/layout.js
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import ThemeProvider from "@/components/ThemeProvider";
@@ -21,7 +20,6 @@ export default function RootLayout({ children }) {
           <Header />
           <main className="container mx-auto px-4 py-8">{children}</main>
 
-          {/* Footer global */}
           <Footer
             brand={{ name: "Tona's Zoo", tagline: "Conservación, ciencia y aventura", href: "/" }}
             columns={[
@@ -29,8 +27,8 @@ export default function RootLayout({ children }) {
                 title: "Explorar",
                 links: [
                   { label: "Calendario", href: "/calendario" },
-                  { label: "Reloj & horario", href: "/reloj" },
-                  { label: "Hábitats", href: "/pagina3" },
+                  { label: "Horario", href: "/horario" },
+                  { label: "Hábitats", href: "/habitats" },
                 ],
               },
               {
@@ -45,7 +43,7 @@ export default function RootLayout({ children }) {
                 links: [
                   { label: "Instagram", href: "#" },
                   { label: "YouTube", href: "#" },
-                  { label: "Twitter/X", href: "#" },
+                  { label: "Twitter", href: "#" },
                 ],
               },
             ]}

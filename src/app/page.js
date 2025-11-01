@@ -113,7 +113,7 @@ export default function HomePage() {
         <h2 className="text-2xl font-semibold mb-4">Explora por áreas</h2>
         <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
           <Card
-            image="/Habitats/mamiferos.webp"
+            image="/Habitats-Inicio/mamiferos.webp"
             imageAlt="Mamíferos"
             title="Mamíferos"
             description="Elefantes, jirafas, lémures y más en hábitats amplios."
@@ -123,7 +123,7 @@ export default function HomePage() {
           </Card>
 
           <Card
-            image="/Habitats/aves.webp"
+            image="/Habitats-Inicio/aves.webp"
             imageAlt="Aves"
             title="Aves"
             description="Tucanes, Guacamayos y rapaces en vuelo."
@@ -133,7 +133,7 @@ export default function HomePage() {
           </Card>
 
           <Card
-            image="/Habitats/reptiles.webp"
+            image="/Habitats-Inicio/reptiles.webp"
             imageAlt="Reptiles"
             title="Reptiles"
             description="Caimanes, tortugas gigantes y serpientes."
@@ -143,7 +143,7 @@ export default function HomePage() {
           </Card>
 
           <Card
-            image="/Habitats/acuario.webp"
+            image="/Habitats-Inicio/acuario.webp"
             imageAlt="Acuario"
             title="Acuario"
             description="Peces tropicales y medusas hipnóticas."
@@ -155,7 +155,7 @@ export default function HomePage() {
       </section>
 
       <section className="mb-20">
-        <h3 className="text-2xl font-semibold mb-6">Planifica tu recorrido en 1 clic</h3>
+        <h3 className="text-2xl font-semibold mb-6">Planifica tu recorrido</h3>
 
         <div className="grid lg:grid-cols-3 gap-8">
           <div className="lg:col-span-2">

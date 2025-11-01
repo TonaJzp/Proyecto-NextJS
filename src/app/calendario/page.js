@@ -70,7 +70,7 @@ export default function CalendarioPage() {
                 {checkIn ? new Date(checkIn).toISOString().slice(0, 10) : "—"}
               </p>
             </div>
-            <div>
+            <div> 
               <p className="text-sm opacity-70 mb-1">Salida</p>
               <p className="text-3xl font-bold text-secondary">
                 {checkOut ? new Date(checkOut).toISOString().slice(0, 10) : "—"}
