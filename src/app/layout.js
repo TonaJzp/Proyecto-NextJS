@@ -29,13 +29,12 @@ export default function RootLayout({ children }) {
                   { label: "Calendario", href: "/calendario" },
                   { label: "Horario", href: "/horario" },
                   { label: "Hábitats", href: "/habitats" },
-                  { label: "Tarifas", href: "/tarifas" },
                 ],
               },
               {
                 title: "Planifica",
                 links: [
-                  { label: "Entradas y precios", href: "/pagina4" },
+                  { label: "Entradas, Tarifas y Promociones", href: "/tarifas" },
                   { label: "Contacto y FAQs", href: "/pagina5" },
                 ],
               },
