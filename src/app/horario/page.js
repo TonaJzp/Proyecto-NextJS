@@ -20,7 +20,7 @@ function LiveClock() {
   );
 }
 
-export default function RelojPage() {
+export default function HorarioPage() {
   return (
     <>
       <Breadcrumbs className="mb-4" segmentNameMap={{ reloj: "Reloj" }} />

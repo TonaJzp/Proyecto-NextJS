@@ -1,4 +1,3 @@
-// components/ThemeSelect.js
 "use client";
 
 export default function ThemeSelect() {

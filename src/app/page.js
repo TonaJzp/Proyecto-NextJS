@@ -4,7 +4,8 @@ import { useState, useMemo, useEffect, useRef } from "react";
 import AutoCarousel from "@/components/AutoCarousel";
 import Card from "@/components/Card";
 import Fab from "@/components/Fab";
-import Breadcrumbs from "@/components/Breadcrumbs";
+import Diff from "@/components/Diff";
+import { LuSun, LuMoon } from "react-icons/lu";
 
 export default function HomePage() {
   const presets = {
@@ -154,7 +155,30 @@ export default function HomePage() {
         </div>
       </section>
 
-      <section className="mb-20">
+      <section className="mt-6">
+        <h2 className="text-2xl font-semibold">Experiencia Dia/Noche</h2>
+        <p className="opacity-80 mt-1 mb-4">
+          Desliza el control para comparar la misma escena del parque a plena luz del día y durante la visita nocturna.
+        </p>
+
+        <div className="relative rounded-2xl bg-base-200 ring-1 ring-base-300 p-4 lg:p-6">
+          <div className="relative mx-auto w-full max-w-8xl flex justify-center">
+            {/* ⬇️ Wrapper con el mismo ancho que antes (1/2), ahora sí recorta con radius */}
+            <div className="w-1/2 rounded-2xl overflow-hidden">
+              <Diff />
+            </div>
+
+            <span className="absolute left-3 top-3 badge badge-ghost gap-2">
+              <LuMoon className="w-4 h-4" /> Noche
+            </span>
+            <span className="absolute right-3 top-3 badge badge-ghost gap-2">
+              <LuSun className="w-4 h-4" /> Día
+            </span>
+          </div>
+        </div>
+      </section>
+
+      <section className="mt-12 mb-20">
         <h3 className="text-2xl font-semibold mb-6">Planifica tu recorrido</h3>
 
         <div className="grid lg:grid-cols-3 gap-8">

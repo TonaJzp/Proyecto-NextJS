@@ -1,4 +1,3 @@
-// src/components/Header.js
 import Link from "next/link";
 import ThemeSelect from "./ThemeSelect";
 import { ImHome } from "react-icons/im";
@@ -17,7 +16,7 @@ function Header() {
           <li><Link href="/calendario">Calendario</Link></li>
           <li><Link href="/horario">Horario</Link></li>
           <li><Link href="/habitats">Hábitats</Link></li>
-          <li><Link href="/pagina4">Página 4</Link></li>
+          <li><Link href="/tarifas">Tarifas</Link></li>
           <li><Link href="/pagina5">Página 5</Link></li>
         </ul>
       </div>
@@ -35,7 +34,7 @@ function Header() {
               <li><Link href="/calendario">Calendario</Link></li>
               <li><Link href="/horario">Horario</Link></li>
               <li><Link href="/habitats">Hábitats</Link></li>
-              <li><Link href="/pagina4">Página 4</Link></li>
+              <li><Link href="/tarifas">Tarifas</Link></li>
               <li><Link href="/pagina5">Página 5</Link></li>
             </ul>
           </div>

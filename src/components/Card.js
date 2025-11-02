@@ -1,4 +1,3 @@
-// components/Card.js
 import Link from "next/link";
 import PropTypes from "prop-types";
 

@@ -29,6 +29,7 @@ export default function RootLayout({ children }) {
                   { label: "Calendario", href: "/calendario" },
                   { label: "Horario", href: "/horario" },
                   { label: "Hábitats", href: "/habitats" },
+                  { label: "Tarifas", href: "/tarifas" },
                 ],
               },
               {

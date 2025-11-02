@@ -1,4 +1,3 @@
-// components/AutoCarousel.js
 'use client'
 
 import Image from "next/image";

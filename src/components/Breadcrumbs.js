@@ -1,4 +1,3 @@
-// src/components/AutoBreadcrumbs.jsx
 'use client';                      // <- necesario porque usamos hooks de Next
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
