@@ -261,6 +261,8 @@ export default function HomePage() {
           { label: "Calendario", href: "/calendario", content: "📅" },
           { label: "Entradas", href: "/tarifas", content: "🎟️" },
           { label: "Contacto", href: "/contacto", content: "✉️" },
+          { label: "Horario", href: "/horario", content: "⏰" },
+          { label: "Habitats", href: "/habitats", content: "🌿" },
         ]}
       />
     </>
