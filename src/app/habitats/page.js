@@ -1,11 +1,10 @@
-// app/pagina3/page.js
 import Breadcrumbs from "@/components/Breadcrumbs";
 import Card from "@/components/Card";
 
 export default function HabitatsPage() {
   return (
     <>
-      <Breadcrumbs className="mb-4" segmentNameMap={{ pagina3: "Hábitats" }} />
+      <Breadcrumbs className="mb-4" segmentNameMap={{ habitats: "Hábitats" }} />
       <h1 className="text-3xl font-bold mb-2">Hábitats y especies</h1>
       <p className="opacity-80 mb-6">
         Recorre las zonas principales del parque y descubre qué animales podrás ver en cada una.
@@ -33,7 +32,7 @@ export default function HabitatsPage() {
             image="/Habitats/sabana.webp"
             title="Sabana africana"
             description="Leones, jirafas y cebras en una llanura abierta con miradores."
-            actions={[{ label: "Comprar entradas", href: "/pagina4", color: "accent" }]}
+            actions={[{ label: "Comprar entradas", href: "/tarifas", color: "accent" }]}
           >
             <div className="mt-4" />
           </Card>
@@ -74,7 +73,7 @@ export default function HabitatsPage() {
             image="/Habitats/acuario.webp"
             title="Acuario de arrecife"
             description="Cardúmenes de peces tropicales y corales en peceras panorámicas."
-            actions={[{ label: "Comprar entradas", href: "/pagina4", color: "accent" }]}
+            actions={[{ label: "Comprar entradas", href: "/tarifas", color: "accent" }]}
           >
             <div className="mt-4" />
           </Card>

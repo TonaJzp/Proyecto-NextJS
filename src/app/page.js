@@ -105,7 +105,7 @@ export default function HomePage() {
           </p>
           <div className="mt-6 flex gap-3">
             <a className="btn btn-primary" href="/calendario">Planifica tu visita</a>
-            <a className="btn" href="/pagina4">Entradas y precios</a>
+            <a className="btn" href="/tarifas">Entradas y precios</a>
           </div>
         </div>
       </section>
@@ -118,7 +118,7 @@ export default function HomePage() {
             imageAlt="Mamíferos"
             title="Mamíferos"
             description="Elefantes, jirafas, lémures y más en hábitats amplios."
-            actions={[{ label: "Ver hábitats", href: "/pagina3", color: "secondary" }]}
+            actions={[{ label: "Ver hábitats", href: "/habitats", color: "secondary" }]}
           >
             <div className="mt-6" />
           </Card>
@@ -128,7 +128,7 @@ export default function HomePage() {
             imageAlt="Aves"
             title="Aves"
             description="Tucanes, Guacamayos y rapaces en vuelo."
-            actions={[{ label: "Ver hábitats", href: "/pagina3" }]}
+            actions={[{ label: "Ver hábitats", href: "/habitats" }]}
           >
             <div className="mt-6" />
           </Card>
@@ -138,7 +138,7 @@ export default function HomePage() {
             imageAlt="Reptiles"
             title="Reptiles"
             description="Caimanes, tortugas gigantes y serpientes."
-            actions={[{ label: "Ver hábitats", href: "/pagina3" }]}
+            actions={[{ label: "Ver hábitats", href: "/habitats" }]}
           >
             <div className="mt-6" />
           </Card>
@@ -148,7 +148,7 @@ export default function HomePage() {
             imageAlt="Acuario"
             title="Acuario"
             description="Peces tropicales y medusas hipnóticas."
-            actions={[{ label: "Comprar entradas", href: "/pagina4", color: "accent" }]}
+            actions={[{ label: "Comprar entradas", href: "/tarifas", color: "accent" }]}
           >
             <div className="mt-6" />
           </Card>
@@ -245,7 +245,7 @@ export default function HomePage() {
                 >
                   Siguiente animal
                 </button>
-                <a href="/pagina3" className="btn">
+                <a href="/habitats" className="btn">
                   Ver su hábitat
                 </a>
               </div>
@@ -259,8 +259,8 @@ export default function HomePage() {
         variant="flower"
         actions={[
           { label: "Calendario", href: "/calendario", content: "📅" },
-          { label: "Entradas", href: "/pagina4", content: "🎟️" },
-          { label: "Contacto", href: "/pagina5", content: "✉️" },
+          { label: "Entradas", href: "/tarifas", content: "🎟️" },
+          { label: "Contacto", href: "/contacto", content: "✉️" },
         ]}
       />
     </>

@@ -35,7 +35,7 @@ export default function RootLayout({ children }) {
                 title: "Planifica",
                 links: [
                   { label: "Entradas, Tarifas y Promociones", href: "/tarifas" },
-                  { label: "Contacto y FAQs", href: "/pagina5" },
+                  { label: "Contacto y FAQs", href: "/contacto" },
                 ],
               },
               {

@@ -1,11 +1,10 @@
-// app/pagina4/page.js
 import Breadcrumbs from "@/components/Breadcrumbs";
 import Card from "@/components/Card";
 
 export default function TarifasPage() {
   return (
     <>
-      <Breadcrumbs className="mb-4" segmentNameMap={{ pagina4: "Tarifas" }} />
+      <Breadcrumbs className="mb-4" segmentNameMap={{ tarifas: "Tarifas" }} />
 
        <div className="alert alert-info mb-6">
         <span className="font-medium">Promoción online:</span> Compra en la web y ahorra un 10% en tarifa general e infantil.
@@ -121,7 +120,7 @@ export default function TarifasPage() {
         </div>
         <div className="mt-4 flex flex-wrap gap-3">
           <a className="btn btn-primary" href="/calendario">Solicitar fecha</a>
-          <a className="btn btn-outline" href="/pagina5">Contáctanos</a>
+          <a className="btn btn-outline" href="/contacto">Contáctanos</a>
         </div>
       </section>
 

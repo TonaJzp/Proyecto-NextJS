@@ -17,7 +17,7 @@ function Header() {
           <li><Link href="/horario">Horario</Link></li>
           <li><Link href="/habitats">Hábitats</Link></li>
           <li><Link href="/tarifas">Tarifas</Link></li>
-          <li><Link href="/pagina5">Página 5</Link></li>
+          <li><Link href="/contacto">Contacto</Link></li>
         </ul>
       </div>
 
@@ -35,7 +35,7 @@ function Header() {
               <li><Link href="/horario">Horario</Link></li>
               <li><Link href="/habitats">Hábitats</Link></li>
               <li><Link href="/tarifas">Tarifas</Link></li>
-              <li><Link href="/pagina5">Página 5</Link></li>
+              <li><Link href="/contacto">Contacto</Link></li>
             </ul>
           </div>
         </div>
