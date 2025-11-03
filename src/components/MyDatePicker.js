@@ -13,9 +13,6 @@ export default function MyDatePicker() {
             mode="single"   // multiple, range
             selected={selected}
             onSelect={setSelected}
-        // footer={
-        //     selected ? `Seleccionado: ${selected.toLocaleDateString()}` : "Escoge un día."
-        // }
         />
     );
 }

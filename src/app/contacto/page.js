@@ -1,4 +1,3 @@
-// app/pagina5/page.js
 import Breadcrumbs from "@/components/Breadcrumbs";
 
 export default function ContactoPage() {
@@ -7,7 +6,6 @@ export default function ContactoPage() {
       <Breadcrumbs className="mb-4" segmentNameMap={{ contacto: "Contacto" }} />
       <h1 className="text-3xl font-bold mb-8">Contacto</h1>
 
-      {/* 👇 items-start evita que la columna izquierda crezca al expandir las FAQs */}
       <div className="grid lg:grid-cols-2 gap-8 items-start">
         <form className="bg-base-200 rounded-2xl p-6 lg:p-8 ring-1 ring-base-300 shadow-sm self-start h-fit">
           <h2 className="text-xl font-semibold">Escríbenos</h2>

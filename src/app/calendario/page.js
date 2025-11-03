@@ -17,6 +17,22 @@ import {
 export default function CalendarioPage() {
   const [checkIn, setCheckIn] = useState("");
   const [checkOut, setCheckOut] = useState("");
+  const [status, setStatus] = useState(null);
+
+  const isValid =
+    checkIn &&
+    checkOut &&
+    new Date(checkOut).getTime() > new Date(checkIn).getTime();
+
+  const handleClear = () => {
+    setCheckIn("");
+    setCheckOut("");
+    setStatus(null);
+  };
+
+  const handleReserve = () => {
+    if (isValid) setStatus("success");
+  };
 
   return (
     <>
@@ -45,7 +61,10 @@ export default function CalendarioPage() {
                 type="datetime-local"
                 className="input input-bordered w-full"
                 value={checkIn}
-                onChange={(e) => setCheckIn(e.target.value)}
+                onChange={(e) => {
+                  setCheckIn(e.target.value);
+                  setStatus(null);
+                }}
               />
             </label>
 
@@ -56,7 +75,10 @@ export default function CalendarioPage() {
                 className="input input-bordered w-full"
                 value={checkOut}
                 min={checkIn || undefined}
-                onChange={(e) => setCheckOut(e.target.value)}
+                onChange={(e) => {
+                  setCheckOut(e.target.value);
+                  setStatus(null);
+                }}
               />
             </label>
           </div>
@@ -70,7 +92,7 @@ export default function CalendarioPage() {
                 {checkIn ? new Date(checkIn).toISOString().slice(0, 10) : "—"}
               </p>
             </div>
-            <div> 
+            <div>
               <p className="text-sm opacity-70 mb-1">Salida</p>
               <p className="text-3xl font-bold text-secondary">
                 {checkOut ? new Date(checkOut).toISOString().slice(0, 10) : "—"}
@@ -84,9 +106,26 @@ export default function CalendarioPage() {
           </div>
 
           <div className="mt-4 flex gap-3">
-            <button className="btn btn-primary">Reservar</button>
-            <button className="btn">Borrar</button>
+            <button
+              type="button"
+              className="btn btn-primary"
+              onClick={handleReserve}
+              disabled={!isValid}
+              title={!isValid ? "Selecciona una entrada y salida válidas" : undefined}
+            >
+              Reservar
+            </button>
+            <button type="button" className="btn" onClick={handleClear}>
+              Borrar
+            </button>
           </div>
+
+          {status === "success" && (
+            <div className="alert alert-success mt-4" role="status" aria-live="polite">
+              <LuCircleCheck className="w-5 h-5" />
+              <span>Reserva realizada con éxito.</span>
+            </div>
+          )}
         </div>
       </div>
 
@@ -95,7 +134,7 @@ export default function CalendarioPage() {
           variant="side"
           image="oso-pardo1.webp"
           className="ring-1 ring-base-300 bg-base-100"
-          figureClassName="w-1/2 h-full"
+          figureClassName="hidden 2xl:block w-1/2 h-full"
           imageClassName="w-full h-full object-cover"
         >
           <div className="flex flex-wrap items-center gap-3">

@@ -1,17 +1,6 @@
 import Link from "next/link";
 import PropTypes from "prop-types";
 
-/**
- * props:
- * - title, description
- * - image (src), imageAlt
- * - href (link del título)
- * - actions: [{ label, href?, onClick?, color? }]
- * - variant: "default" | "image" | "side"
- * - size: "sm" | "md" | "lg" | "xs" | "xl" | "compact" | "normal"
- * - figureClassName: clases para <figure> (opcional, p.ej. "w-1/2 h-full")
- * - imageClassName: clases para <img> (opcional, p.ej. "w-full h-full object-cover")
- */
 export default function Card({
   title,
   description,
@@ -23,8 +12,8 @@ export default function Card({
   size = "md",
   className = "",
   children,
-  figureClassName,              // 👈 nuevo
-  imageClassName,               // 👈 nuevo
+  figureClassName,              
+  imageClassName,              
 }) {
   const sizeClass =
     size === "compact"
@@ -40,7 +29,6 @@ export default function Card({
     .filter(Boolean)
     .join(" ");
 
-  // valores por defecto antiguos (compatibles)
   const defaultFigure =
     variant === "side" ? "w-48 sm:w-64 h-auto" : "aspect-[16/9]";
   const defaultImg = "w-full h-full object-cover object-center";

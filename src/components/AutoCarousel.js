@@ -28,7 +28,6 @@ export default function AutoCarousel() {
                 />
             ))}
 
-            {/* Botones de navegación */}
             <button
                 type="button"
                 onClick={prevSlide}

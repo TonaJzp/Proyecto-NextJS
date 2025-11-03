@@ -1,19 +1,17 @@
-'use client';                      // <- necesario porque usamos hooks de Next
+'use client';                     
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 
 export default function Breadcrumbs({
   className = '',
-  segmentNameMap = {},             // opcional: { documents: 'Documentos', 'add-document': 'Añadir' }
-  hideHome = false,                // si no quieres mostrar "Home"
+  segmentNameMap = {},           
+  hideHome = false,               
 }) {
   const pathname = usePathname() || '/';
 
-  // limpia query/hash y parte en segmentos
   const raw = pathname.split('?')[0].split('#')[0];
   const segments = raw.split('/').filter(Boolean);
 
-  // construye crumbs acumulando href
   const crumbs = [];
   let hrefAcc = '';
 
@@ -51,7 +49,6 @@ export default function Breadcrumbs({
   );
 }
 
-// "mi-categoria-super" -> "Mi Categoria Super"
 function toTitle(slug) {
   return slug
     .replace(/[-_]+/g, ' ')

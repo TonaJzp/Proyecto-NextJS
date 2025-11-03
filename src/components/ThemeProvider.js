@@ -9,21 +9,18 @@ export default function ThemeProvider({ children }) {
     const [theme, setTheme] = useState("");
 
     useEffect(() => {
-        themeChange(false); // 👆 false parameter is required for react project
+        themeChange(false); 
 
-        // Si hay un tema guardado en localStorage, úsalo
         const saved = localStorage.getItem("theme");
 
         if (saved) {
             applyTheme(saved);
         } else {
-            // Detectar tema del sistema
             const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
             const systemTheme = prefersDark ? "dark" : DEFAULT_THEME;
             applyTheme(systemTheme);
         }
 
-        // Escuchar cambios entre pestañas
         const handleStorage = (e) => {
             if (e.key === "theme" && e.newValue) {
                 applyTheme(e.newValue);

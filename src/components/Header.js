@@ -16,7 +16,6 @@ export default function Header() {
     <header className="sticky top-0 z-50 border-b border-base-300 bg-base-100/80 backdrop-blur">
       <div className="container mx-auto px-4">
         <div className="navbar min-h-16">
-          {/* Brand + Theme */}
           <div className="flex-1 min-w-0 flex items-center gap-3">
             <Link href="/" className="inline-flex items-center gap-2 text-lg font-semibold">
               <span className="p-2 rounded-xl bg-primary/10 text-primary">
@@ -29,7 +28,6 @@ export default function Header() {
             </div>
           </div>
 
-          {/* Desktop nav */}
           <nav className="hidden md:flex items-center gap-1">
             <Link href="/calendario" className={active("/calendario")}>Calendario</Link>
             <Link href="/horario" className={active("/horario")}>Horario</Link>
@@ -38,7 +36,6 @@ export default function Header() {
             <Link href="/contacto" className={active("/contacto")}>Contacto</Link>
           </nav>
 
-          {/* Mobile nav */}
           <div className="md:hidden">
             <div className="dropdown dropdown-end">
               <label tabIndex={0} className="btn btn-ghost btn-circle">

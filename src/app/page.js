@@ -5,7 +5,6 @@ import AutoCarousel from "@/components/AutoCarousel";
 import Card from "@/components/Card";
 import Fab from "@/components/Fab";
 import Diff from "@/components/Diff";
-import { LuSun, LuMoon } from "react-icons/lu";
 
 export default function HomePage() {
   const presets = {
@@ -66,7 +65,7 @@ export default function HomePage() {
   const animal = animals[animalIdx];
   const [fading, setFading] = useState(false);
 
-  const autoMs = 6000;                 // 6s (entre 5–7s como pediste)
+  const autoMs = 6000;
   const timerRef = useRef(null);
 
   const startAutoRotation = () => {
@@ -97,7 +96,7 @@ export default function HomePage() {
         </div>
 
         <div className="bg-base-200 rounded-2xl p-8 flex flex-col justify-center">
-          <h1 className="text-4xl font-bold mb-3">Bienvenido a Tona's Zoo</h1>
+          <h1 className="text-4xl font-bold mb-3">Bienvenido a Tona&apos;s Zoo</h1>
           <p className="opacity-80">
             Explora más de 350 especies, programas de conservación y experiencias
             inmersivas para toda la familia. Cambia el tema desde el selector del
@@ -156,24 +155,21 @@ export default function HomePage() {
       </section>
 
       <section className="mt-6">
-        <h2 className="text-2xl font-semibold">Experiencia Dia/Noche</h2>
+        <h2 className="text-2xl font-semibold">Experiencia Día/Noche</h2>
         <p className="opacity-80 mt-1 mb-4">
           Desliza el control para comparar la misma escena del parque a plena luz del día y durante la visita nocturna.
         </p>
 
         <div className="relative rounded-2xl bg-base-200 ring-1 ring-base-300 p-4 lg:p-6">
-          <div className="relative mx-auto w-full max-w-8xl flex justify-center">
-            {/* ⬇️ Wrapper con el mismo ancho que antes (1/2), ahora sí recorta con radius */}
-            <div className="w-1/2 rounded-2xl overflow-hidden">
+          <div
+            className="relative mx-auto w-full max-w-6xl
+                       [&_.diff]:w-full
+                       [&_.diff]:h-56 [&_.diff]:aspect-auto
+                       lg:[&_.diff]:h-150"
+          >
+            <div className="rounded-2xl overflow-hidden">
               <Diff />
             </div>
-
-            <span className="absolute left-3 top-3 badge badge-ghost gap-2">
-              <LuMoon className="w-4 h-4" /> Noche
-            </span>
-            <span className="absolute right-3 top-3 badge badge-ghost gap-2">
-              <LuSun className="w-4 h-4" /> Día
-            </span>
           </div>
         </div>
       </section>
@@ -224,11 +220,19 @@ export default function HomePage() {
           </div>
 
           <aside className="bg-base-200 rounded-2xl p-6 ring-1 ring-base-300">
-            <div className={`space-y-4 transition-opacity duration-700 ${fading ? "opacity-0" : "opacity-100"}`}>
-              <div className="badge badge-secondary badge-lg">Animal del día</div>
+            <div
+              className={`space-y-4 transition-opacity duration-700 ${
+                fading ? "opacity-0" : "opacity-100"
+              }`}
+            >
+              <div className="text-center">
+                <div className="badge badge-secondary badge-lg">Animal del día</div>
+              </div>
+
               <div className="aspect-video w-full overflow-hidden rounded-xl ring-1 ring-base-300">
                 <img src={animal.img} alt={animal.name} className="w-full h-full object-cover" />
               </div>
+
               <h4 className="text-xl font-semibold">{animal.name}</h4>
               <ul className="list-disc ps-5 space-y-1 opacity-80">
                 {animal.facts.map((f, i) => (
@@ -240,14 +244,12 @@ export default function HomePage() {
                   className="btn btn-primary"
                   onClick={() => {
                     setAnimalIdx((i) => (i + 1) % animals.length);
-                    startAutoRotation(); 
+                    startAutoRotation();
                   }}
                 >
                   Siguiente animal
                 </button>
-                <a href="/habitats" className="btn">
-                  Ver su hábitat
-                </a>
+                <a href="/habitats" className="btn">Ver su hábitat</a>
               </div>
             </div>
           </aside>

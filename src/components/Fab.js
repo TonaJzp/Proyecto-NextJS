@@ -2,7 +2,6 @@
 import Link from 'next/link';
 import PropTypes from 'prop-types';
 
-// Posiciones prácticas
 const POS = {
   'br': 'fixed bottom-6 right-6',
   'bl': 'fixed bottom-6 left-6',
@@ -11,13 +10,13 @@ const POS = {
 };
 
 export default function Fab({
-  actions = [],                   // [{label, href?, onClick?, content?}]
-  position = 'br',                // br | bl | tr | tl
-  color = 'btn-primary',          // btn-primary | btn-secondary | ...
-  size = 'btn-lg',                // btn-sm | btn-md | btn-lg
-  variant = 'vertical',           // vertical | flower
-  main = '+',                     // contenido del botón principal (texto o icono)
-  mainAction = null,              // { label?: string, content?: ReactNode } -> usa fab-main-action
+  actions = [],                  
+  position = 'br',                
+  color = 'btn-primary',          
+  size = 'btn-lg',                
+  variant = 'vertical',           
+  main = '+',                    
+  mainAction = null,             
   className = '',
 }) {
   const isFlower = variant === 'flower';
@@ -26,12 +25,10 @@ export default function Fab({
   return (
     <div className={wrapClass}>
       <div className={`fab ${isFlower ? 'fab-flower' : ''}`}>
-        {/* Botón principal: focusable y accesible */}
         <div tabIndex={0} role="button" className={`btn ${size} btn-circle ${color}`} aria-label="Open speed dial">
           {main}
         </div>
 
-        {/* (Opcional) Main action que sustituye al botón cuando está abierto */}
         {mainAction && (
           <div className="fab-main-action">
             {mainAction.label ? <span className="mr-2">{mainAction.label}</span> : null}
@@ -39,7 +36,6 @@ export default function Fab({
           </div>
         )}
 
-        {/* Acciones del speed dial */}
         {actions.map((a, i) => {
           const btn = (
             <button

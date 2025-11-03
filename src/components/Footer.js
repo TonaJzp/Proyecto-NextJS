@@ -1,57 +1,65 @@
+"use client";
+
 import Link from "next/link";
 import PropTypes from "prop-types";
 
-/**
- * Footer de daisyUI:
- * - vertical en móvil, horizontal desde sm (comportamiento por defecto de .footer)
- * - usa .footer-title para los títulos de columna
- */
 export default function Footer({
-  brand,                 // { name, logoSrc?, tagline?, href? }
-  columns = [],          // [{ title, links: [{ label, href }] }]
-  centered = false,      // añade .footer-center
+  brand,               
+  columns = [],        
+  centered = false,      
   className = "",
   showCopyright = true,
 }) {
   const year = new Date().getFullYear();
 
   return (
-    <footer
-      className={`footer ${centered ? "footer-center" : ""} bg-base-200 text-base-content p-10 ${className}`}
-    >
-      {/* Sección de marca (opcional) */}
-      {brand && (
-        <aside>
-          {brand.logoSrc ? (
-            <Link href={brand.href || "/"} className="inline-flex items-center gap-3">
-              <img src={brand.logoSrc} alt={`${brand.name} logo`} className="h-10 w-auto" />
-              <span className="text-lg font-semibold">{brand.name}</span>
-            </Link>
-          ) : (
-            <p className="text-lg font-semibold">{brand.name}</p>
+    <footer className={`bg-base-200 text-base-content ${className}`}>
+      <div className={`container mx-auto px-4 py-10 ${centered ? "text-center" : "text-left"}`}>
+        <div className="grid gap-8 grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 items-start">
+          {brand && (
+            <aside className="space-y-2">
+              {brand.logoSrc ? (
+                <Link href={brand.href || "/"} className="inline-flex items-center gap-3">
+                  <img src={brand.logoSrc} alt={`${brand.name} logo`} className="h-10 w-auto" />
+                  <span className="text-lg font-semibold">{brand.name}</span>
+                </Link>
+              ) : (
+                <Link href={brand.href || "/"} className="inline-block">
+                  <p className="text-lg font-semibold">{brand.name}</p>
+                </Link>
+              )}
+              {brand.tagline && <p className="opacity-70">{brand.tagline}</p>}
+            </aside>
           )}
-          {brand.tagline && <p className="opacity-70">{brand.tagline}</p>}
-        </aside>
-      )}
 
-      {/* Columnas */}
-      {columns.map((col, i) => (
-        <nav key={i}>
-          {col.title && <h6 className="footer-title">{col.title}</h6>}
-          {col.links?.map((l, j) => (
-            <Link key={j} href={l.href || "#"} className="link link-hover">
-              {l.label}
-            </Link>
-          ))}
-        </nav>
-      ))}
+          {/* Cols: si hay brand, ocupan las 3 restantes; si no, ocupan todas */}
+          <div className={`${brand ? "sm:col-span-1 lg:col-span-3" : "sm:col-span-2 lg:col-span-4"}`}>
+            <div className={`grid gap-8 grid-cols-1 sm:grid-cols-2 ${columns.length >= 3 ? "lg:grid-cols-3" : "lg:grid-cols-2"}`}>
+              {columns.map((col, i) => (
+                <nav key={i}>
+                  {col.title && <h6 className="font-semibold mb-3">{col.title}</h6>}
+                  <ul className="space-y-2">
+                    {col.links?.map((l, j) => (
+                      <li key={j}>
+                        <Link href={l.href || "#"} className="link link-hover break-words">
+                          {l.label}
+                        </Link>
+                      </li>
+                    ))}
+                  </ul>
+                </nav>
+              ))}
+            </div>
+          </div>
+        </div>
 
-      {/* Copyright (opcional) */}
-      {showCopyright && centered && (
-        <aside className="mt-6 opacity-70">
-          © {year} {brand?.name || ""}. All rights reserved.
-        </aside>
-      )}
+        {/* Copyright (mantengo tu condición original: solo si centered) */}
+        {showCopyright && centered && (
+          <aside className="mt-8 opacity-70">
+            © {year} {brand?.name || ""}. All rights reserved.
+          </aside>
+        )}
+      </div>
     </footer>
   );
 }
